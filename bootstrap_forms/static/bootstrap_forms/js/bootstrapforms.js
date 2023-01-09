@@ -50,6 +50,38 @@ BsField.prototype.addEventListener = function (type, listener, options) {
 
 
 /**
+ * Add an error or warning to a widget
+ *
+ * @param {str} type    -- type of message being added (e.g., 'ERROR', 'WARNING')
+ * @param {str} message -- text of the message to add to the widget
+ */
+BsField.prototype.addMessage = function (type, message) {
+  let that        = this
+  let errorList   = that.widget.querySelector('.errorlist')
+  let widgetClass = (type.trim().toUpperCase() == 'WARNING') ? 'is-warning' : 'is-invalid';
+  let msgElement  = document.createElement('li')
+  msgElement.textContent = message
+  that.widget.classList.add(widgetClass)
+  errorList.append(msgElement)
+}
+
+
+/**
+ * Clear any error/warning messages from the widget
+ */
+BsField.prototype.clearMessages = function () {
+  let that      = this
+  var errorList = that.widget.querySelector('.errorlist')
+  var messages  = errorList.querySelectorAll('li')
+  messages.forEach(function(item, index) {
+    errorList.removeChild(item)
+  })
+  that.widget.classList.remove('is-invalid')
+  that.widget.classList.remove('is-warning')
+}
+
+
+/**
  * Hide (i.e., collapse) the widget
  * @return null
  */
