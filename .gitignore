@@ -1,0 +1,14 @@
+## Python specific
+*.egg-info
+*.pyc
+
+## generic files to ignore
+*~
+*.lock
+*.DS_Store
+*.swp
+*.out
+*.2.db
+
+# specific files
+
