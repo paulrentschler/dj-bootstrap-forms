@@ -1,0 +1,4 @@
+{% load md2 %}
+{% spaceless %}
+  <div class="form-control">{{ widget.value|stringformat:'s'|markdown:"safe" }}</div>
+{% endspaceless %}
