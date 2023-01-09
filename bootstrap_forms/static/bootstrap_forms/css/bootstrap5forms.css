@@ -58,6 +58,24 @@ label.disabled {
 
 
 
+/* Rules to fix the SplitDateTime widget */
+
+.splitdatetime {
+    margin-top: 0.5rem;
+}
+
+.splitdatetime .form-control {
+    display: inline-block;
+    margin-right: 0.3rem;
+    width: 10rem;
+}
+
+.splitdatetime .timezone-msg {
+    display: inline-block;
+}
+
+
+
 /* Rules to handle displaying errors */
 
 .form-item {
