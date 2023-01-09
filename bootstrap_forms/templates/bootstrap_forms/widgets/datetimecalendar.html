@@ -1,0 +1,71 @@
+{% spaceless %}
+<div {% for attr_name, attr_value in widget.attrs.items %}
+       {% if attr_value is not False %} {{ attr_name }}
+         {% if attr_value is not True %}="{{ attr_value|stringformat:'s' }}"{% endif %}
+       {% endif %}
+     {% endfor %}
+     >
+  <div class="DateTimeCalendarWidget">
+    <input type="hidden" name="{{ widget.name }}" value="{{ widget.value }}" />
+    <div class="row">
+      <div class="col">
+        <input class="form-control"
+               disabled
+               type="text"
+               value=""
+               />
+      </div>
+    </div>
+    <div class="row my-3 datetimecalendar">
+      <div class="col-12 col-md-6">
+        <div class="calendar">
+          <div class="date-header">
+            <button class="btn btn-light"
+                    rel="previous"
+                    title="Move to the previous month"
+                    type="button"
+                    >&lt;</button>
+            <button class="btn btn-light"
+                    rel="next"
+                    title="Move to the next month"
+                    type="button"
+                    >&gt;</button>
+            <span></span>
+          </div>
+          <div class="date-days">
+            <div class="day" title="Sunday">Sun</div>
+            <div class="day" title="Monday">Mon</div>
+            <div class="day" title="Tuesday">Tue</div>
+            <div class="day" title="Wednesday">Wed</div>
+            <div class="day" title="Thursday">Thu</div>
+            <div class="day" title="Friday">Fri</div>
+            <div class="day" title="Saturday">Sat</div>
+          </div>
+          <div class="date-picker">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="time-header">
+        </div>
+        <div class="time-picker">
+          <div class="time-picker-none text-center">
+            There is no availability on this date.<br />
+            Please choose another date.
+          </div>
+          <ul class="time-picker-available">
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="text-center text-muted">
+          All times are in (UTC-05:00) Eastern Time (US & Canada)
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endspaceless %}

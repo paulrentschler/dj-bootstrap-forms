@@ -1,0 +1,76 @@
+/**
+ * CSS for the DateTimeCalendar widget
+ */
+
+
+/* Headers */
+.datetimecalendar .date-header {
+  min-height: 2.8rem;
+}
+
+.datetimecalendar .time-header {
+  min-height: 0;
+}
+
+@media (min-width: 768px) {
+  .datetimecalendar .time-header {
+    min-height: 2.8rem;
+  }
+}
+
+
+/* Date Picker */
+
+.datetimecalendar .calendar {
+  width: 385px;
+  margin: 0 auto;
+}
+
+.datetimecalendar .date-header span {
+  font-size: 1.2rem;
+  margin-left: 1rem;
+}
+
+.datetimecalendar .date-days .day {
+  display: inline-block;
+  margin: 5px;
+  padding: 4px;
+  text-align: center;
+  width: 45px;
+}
+
+.datetimecalendar .date-picker .date {
+  background-color: transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-block;
+  height: 45px;
+  line-height: 34px;
+  margin: 5px;
+  padding: 4px;
+  text-align: center;
+  vertical-align: middle;
+  width: 45px;
+}
+
+.datetimecalendar .date-picker .date:hover {
+  background-color: red;
+  color: white;
+}
+
+.datetimecalendar .date-picker .date.empty {
+  cursor: auto;
+}
+
+.datetimecalendar .date-picker .empty:hover {
+  background-color: transparent;
+}
+
+
+/* Time Picker */
+
+.datetimecalendar .time-picker-none {
+  background-color: #e9ecef;
+  padding: 1rem;
+}
+
