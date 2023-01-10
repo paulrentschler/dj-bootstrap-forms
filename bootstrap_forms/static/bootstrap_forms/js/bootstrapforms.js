@@ -4,8 +4,10 @@
 
 /**
  * Class that represents a form field
- * @param {string} name -- Value of the input element's "name" attribute
+ *
+ * @param {str} name -- Value of the input element's "name" attribute
  * @param {bool} collapsable -- Indicates if the widget should be made collapsable
+ * @return {void}
  */
 function BsField(name, collapsable) {
   this._selector  = 'form [name="' + name + '"]'
@@ -28,7 +30,9 @@ function BsField(name, collapsable) {
 
 /**
  * Add CSS classes to the widget
- * @param {string} classes -- String of space-separated CSS classes to add
+ *
+ * @param {str} classes -- String of space-separated CSS classes to add
+ * @return {void}
  */
 BsField.prototype.addClass = function (classes) {
   let addClassList = classes.split(' ')
@@ -41,6 +45,8 @@ BsField.prototype.addClass = function (classes) {
 
 /**
  * Adds an event listener to each input of the widget
+ *
+ * @return {void}
  */
 BsField.prototype.addEventListener = function (type, listener, options) {
   this.inputs.forEach(function(element, index) {
@@ -54,6 +60,7 @@ BsField.prototype.addEventListener = function (type, listener, options) {
  *
  * @param {str} type    -- type of message being added (e.g., 'ERROR', 'WARNING')
  * @param {str} message -- text of the message to add to the widget
+ * @return {void}
  */
 BsField.prototype.addMessage = function (type, message) {
   let that        = this
@@ -68,6 +75,8 @@ BsField.prototype.addMessage = function (type, message) {
 
 /**
  * Clear any error/warning messages from the widget
+ *
+ * @return {void}
  */
 BsField.prototype.clearMessages = function () {
   let that      = this
@@ -83,7 +92,8 @@ BsField.prototype.clearMessages = function () {
 
 /**
  * Hide (i.e., collapse) the widget
- * @return null
+ *
+ * @return {void}
  */
 BsField.prototype.hide = function () {
   if (this.widget.classList.contains('collapse')) {
@@ -97,7 +107,8 @@ BsField.prototype.hide = function () {
 
 /**
  * Makes the widget able of being collapsed/expanded
- * @return null
+ *
+ * @return {void}
  */
 BsField.prototype.makeCollapsable = function () {
   this.widget.classList.add('collapse')
@@ -106,7 +117,8 @@ BsField.prototype.makeCollapsable = function () {
 
 /**
  * Make the field required by adding the necessary indicator and attributes
- * @return null
+ *
+ * @return {void}
  */
 BsField.prototype.makeRequired = function () {
   this.widget.classList.add('required')
@@ -118,7 +130,8 @@ BsField.prototype.makeRequired = function () {
 
 /**
  * Remove the required indicator and attribute from the field
- * @return null
+ *
+ * @return {void}
  */
 BsField.prototype.removeRequired = function () {
   this.widget.classList.remove('required')
@@ -130,7 +143,8 @@ BsField.prototype.removeRequired = function () {
 
 /**
  * Display (i.e., uncollapse) the widget
- * @return null
+ *
+ * @return {void}
  */
 BsField.prototype.show = function () {
   if (this.is_required) this.makeRequired()
@@ -144,7 +158,8 @@ BsField.prototype.show = function () {
 
 /**
  * Returns the value of the field
- * @return {string} Value of the field input/selected field input
+ *
+ * @return {str} Value of the field input/selected field input
  */
 BsField.prototype.val = function () {
   if (this.inputs.length == 0) {
