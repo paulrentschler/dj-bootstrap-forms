@@ -112,7 +112,7 @@ ul.errorlist {
 
 .is-warning ul.errorlist:before {
     color: #664d03;
-    content: "Be aware!";
+    content: "Please note!";
     margin-left: -1.5rem;
 }
 
