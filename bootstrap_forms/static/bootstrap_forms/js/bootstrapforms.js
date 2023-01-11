@@ -184,3 +184,80 @@ BsField.prototype.val = function () {
     }
   }
 }
+
+
+
+
+/**
+ * Check input element for HTML5 validation errors
+ *
+ * @param  {element} input -- HTML input/textarea element to check
+ * @param  {BsField} field -- BsField instance associated with `input`
+ * @return {void}
+ */
+function displayValidationErrors (input, field) {
+  if (input.validity.valueMissing) {
+    field.addMessage('ERROR', 'This field is required.')
+  } else if (input.validity.typeMismatch) {
+    let type_ = input.getAttribute('type')
+    if (type_ == 'color') {
+      field.addMessage('ERROR', 'Please enter a valid color in the format: #RRGGBB')
+    } else if (type_ == 'date') {
+      field.addMessage('ERROR', 'Please enter a valid date in the format: YYYY-MM-DD')
+    } else if (type_ == 'email') {
+      field.addMessage('ERROR', 'Please enter a valid email address.')
+    } else if (type_ == 'number') {
+      field.addMessage('ERROR', 'Please enter a number.')
+    } else if (type_ == 'tel') {
+      field.addMessage('ERROR', 'Please enter a valid phone number.')
+    } else if (type_ == 'time') {
+      field.addMessage('ERROR', 'Please enter a valid time in the format: HH:MM am/pm')
+    } else if (type_ == 'url') {
+      field.addMessage('ERROR', 'Please enter a valid web site address.')
+    }
+  }
+}
+
+
+/**
+ * Apply custom form validation handling
+ */
+document.addEventListener(
+  'DOMContentLoaded',
+  function () {
+    const forms = document.querySelectorAll('form')
+    forms.forEach(function (form, index) {
+      // The form must have the "novalidate" attribute
+      // to apply this custom validation handling
+      if (form.getAttribute('novalidate') === null) return;
+
+      // Add an event listener for user input for all input/textarea elements
+      let inputs = form.querySelectorAll('input, textarea')
+      inputs.forEach(function (input, subindex) {
+        if (['button', 'hidden', 'submit'].indexOf(input.getAttribute('type')) >= 0) return;
+        input.addEventListener('input', (event) => {
+          let field = new BsField(input.getAttribute('name'))
+          field.clearMessages()
+          if (!input.validity.valid) displayValidationErrors(input, field);
+        })
+      })
+
+      // Add an event listener to block form submissions if any fields have errors
+      form.addEventListener('submit', (event) => {
+        var hasErrors = false
+        let inputs = event.target.querySelectorAll('input, textarea')
+        inputs.forEach(function (input, index) {
+          if (['button', 'hidden', 'submit'].indexOf(input.getAttribute('type')) >= 0) return;
+
+          let field = new BsField(input.getAttribute('name'))
+          field.clearMessages()
+          if (!input.validity.valid) {
+            hasErrors = true
+            displayValidationErrors(input, field)
+          }
+        })
+        if (hasErrors) event.preventDefault();
+      })
+    })
+  }
+)
