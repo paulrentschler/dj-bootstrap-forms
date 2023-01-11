@@ -18,7 +18,7 @@
     {% endif %}
     {% if field.help_text %}<div class="form-text">{{ field.help_text|safe }}</div>{% endif %}
     {% if not errors %}
-      <ul class="errorlist"></ul>
+      <ul class="errorlist" aria-live="polite"></ul>
     {% else %}
       {{ errors }}
     {% endif %}
