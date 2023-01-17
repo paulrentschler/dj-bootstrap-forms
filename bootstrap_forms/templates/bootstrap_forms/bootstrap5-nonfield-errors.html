@@ -1,0 +1,17 @@
+{% comment %}
+
+  Provides the HTML block for displaying form error messages that are
+  not associated with a particular form field.
+
+{% endcomment %}
+
+
+<ul class="messages list-unstyled">
+  {% for error in form.non_field_errors %}
+    <li class="alert alert-danger mt-3"
+        role="alert">
+      <strong>Attention!</strong>
+      {{ error|escape }}
+    </li>
+  {% endfor %}
+</ul>

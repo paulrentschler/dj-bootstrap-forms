@@ -221,6 +221,8 @@ function displayValidationErrors (input, field) {
 
 /**
  * Apply custom form validation handling
+ *
+ * Reference: https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#implementing_a_customized_error_message
  */
 document.addEventListener(
   'DOMContentLoaded',
