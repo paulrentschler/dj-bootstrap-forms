@@ -248,6 +248,7 @@ document.addEventListener(
       // Add an event listener to block form submissions if any fields have errors
       form.addEventListener('submit', (event) => {
         var hasErrors = false
+        var firstError = null
         let inputs = event.target.querySelectorAll('input, textarea')
         inputs.forEach(function (input, index) {
           if (['button', 'hidden', 'submit'].indexOf(input.getAttribute('type')) >= 0) return;
@@ -256,9 +257,13 @@ document.addEventListener(
           field.clearMessages()
           if (!input.validity.valid) {
             hasErrors = true
+            if (firstError === null) firstError = field
             displayValidationErrors(input, field)
           }
         })
+        if (firstError !== null) {
+          firstError.widget.scrollIntoView({behavior: 'smooth'})
+        }
         if (hasErrors) event.preventDefault();
       })
     })
