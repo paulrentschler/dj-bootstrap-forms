@@ -232,6 +232,7 @@ document.addEventListener(
       // The form must have the "novalidate" attribute
       // to apply this custom validation handling
       if (form.getAttribute('novalidate') === null) return;
+      if (form.getAttribute('novalidate') == 'debug') return;
 
       // Add an event listener for user input for all input/textarea elements
       let inputs = form.querySelectorAll('input, textarea')
