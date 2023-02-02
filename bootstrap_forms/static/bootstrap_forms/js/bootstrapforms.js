@@ -67,7 +67,7 @@ BsField.prototype.addMessage = function (type, message) {
   let errorList   = that.widget.querySelector('.errorlist')
   let widgetClass = (type.trim().toUpperCase() == 'WARNING') ? 'is-warning' : 'is-invalid';
   let msgElement  = document.createElement('li')
-  msgElement.textContent = message
+  msgElement.innerHTML = message
   that.widget.classList.add(widgetClass)
   errorList.append(msgElement)
 }
