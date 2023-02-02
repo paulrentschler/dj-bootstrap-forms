@@ -198,7 +198,7 @@ BsField.prototype.val = function () {
 function displayValidationErrors (input, field) {
   if (input.validity.valueMissing) {
     field.addMessage('ERROR', 'This field is required.')
-  } else if (input.validity.typeMismatch) {
+  } else if (input.validity.typeMismatch || input.validity.patternMismatch) {
     let type_ = input.getAttribute('type')
     if (type_ == 'color') {
       field.addMessage('ERROR', 'Please enter a valid color in the format: #RRGGBB')
