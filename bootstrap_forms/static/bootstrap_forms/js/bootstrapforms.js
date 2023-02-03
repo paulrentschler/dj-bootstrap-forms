@@ -136,6 +136,7 @@ BsField.prototype.isValid = function () {
   this.inputs.forEach(function(element, index) {
       if (!element.validity.valid) valid = false;
   })
+  if (valid && this.widget.classList.contains('is-warning')) return false;
   return valid
 }
 
