@@ -73,11 +73,21 @@ BsField.prototype.addEventListener = function (type, listener, options) {
 BsField.prototype.addMessage = function (type, message) {
   let that        = this
   let errorList   = that.widget.querySelector('.errorlist')
+  let exists      = false
+  var messages    = errorList.querySelectorAll('li')
+  let msgElement  = document.createElement('li')
   let widgetClass = (type.trim().toUpperCase() == 'WARNING') ? 'is-warning' : 'is-invalid';
   let msgElement  = document.createElement('li')
-  msgElement.innerHTML = message
-  that.widget.classList.add(widgetClass)
-  errorList.append(msgElement)
+  // determine if the message is already displayed
+  messages.forEach(function(item, index) {
+    if (item.innerHTML == message) exists = true;
+  })
+  if (!exists) {
+    // display the message
+    msgElement.innerHTML = message
+    that.widget.classList.add(widgetClass)
+    errorList.append(msgElement)
+  }
 }
 
 
