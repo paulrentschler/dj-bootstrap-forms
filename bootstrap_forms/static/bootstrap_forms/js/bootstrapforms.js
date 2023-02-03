@@ -328,7 +328,7 @@ document.addEventListener(
       let inputs = form.querySelectorAll('input, textarea')
       inputs.forEach(function (input, subindex) {
         if (['button', 'hidden', 'submit'].indexOf(input.getAttribute('type')) >= 0) return;
-        input.addEventListener('input', (event) => {
+        input.addEventListener('input', bsf_debounce((event) => {
           let field = new BsField(input.getAttribute('name'))
           let name = input.getAttribute('name')
           if (field.isValid()) {
@@ -337,7 +337,7 @@ document.addEventListener(
           if (!input.validity.valid) {
             displayValidationErrors(input, field)
           }
-        })
+        }, 400))
       })
 
       // Add an event listener to block form submissions if any fields have errors
