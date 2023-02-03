@@ -127,6 +127,20 @@ BsField.prototype.hide = function () {
 
 
 /**
+ * Indicates if all the inputs have valid content
+ *
+ * @return {bool}
+ */
+BsField.prototype.isValid = function () {
+  var valid = true
+  this.inputs.forEach(function(element, index) {
+      if (!element.validity.valid) valid = false;
+  })
+  return valid
+}
+
+
+/**
  * Makes the widget able of being collapsed/expanded
  *
  * @return {void}
