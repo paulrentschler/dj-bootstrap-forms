@@ -14,7 +14,7 @@ function BsField(name, collapsable) {
   let parts = name.split('_')
   let last  = parts[parts.length - 1]
   let index = parseInt(last)
-  if (index !== NaN) {
+  if (!isNaN(index)) {
     name = parts.slice(0, parts.length - 1).join('_')
   }
 
