@@ -231,10 +231,11 @@ BsField.prototype.val = function () {
  * @return {void}
  */
 function displayValidationErrors (input, field) {
+  let type_ = input.getAttribute('type')
   if (input.validity.valueMissing) {
     field.addMessage('ERROR', 'This field is required.')
+
   } else if (input.validity.typeMismatch || input.validity.patternMismatch) {
-    let type_ = input.getAttribute('type')
     if (type_ == 'color') {
       field.addMessage('ERROR', 'Please enter a valid color in the format: #RRGGBB')
     } else if (type_ == 'date') {
@@ -250,6 +251,36 @@ function displayValidationErrors (input, field) {
     } else if (type_ == 'url') {
       field.addMessage('ERROR', 'Please enter a valid web site address.')
     }
+
+  } else if (input.validity.tooLong) {
+    field.addMessage('ERROR', 'Please limit your answer to ' + input.getAttribute('maxlength') + ' characters.')
+
+  } else if (input.validity.tooShort) {
+    field.addMessage('ERROR', 'Your answer needs to be at least ' + input.getAttribute('minlength') + ' characters.')
+
+  } else if (input.validity.rangeUnderflow) {
+    if (type_ == 'number' || type_ == 'range') {
+      field.addMessage('ERROR', 'You must enter/select a value of at least ' + input.getAttribute('min') + '.')
+    } else {
+      let label = type_
+      if (type_ == 'datetime-local') label = 'date/time';
+      field.addMessage('ERROR', 'You must enter/select a ' + label + ' after ' + input.getAttribute('min') + '.')
+    }
+
+  } else if (input.validity.rangeOverflow) {
+    if (type_ == 'number' || type_ == 'range') {
+      field.addMessage('ERROR', 'You must enter/select a value less than ' + input.getAttribute('max') + '.')
+    } else {
+      let label = type_
+      if (type_ == 'datetime-local') label = 'date/time';
+      field.addMessage('ERROR', 'You must enter/select a ' + label + ' before ' + input.getAttribute('min') + '.')
+    }
+
+  } else if (input.validity.stepMismatch) {
+    field.addMessage('ERROR', 'Please enter/select a valid value in increments of ' + input.getAttribute('step') + '.')
+
+  } else if (input.validity.badInput) {
+    field.addMessage('ERROR', 'Please enter a valid value.')
   }
 }
 
