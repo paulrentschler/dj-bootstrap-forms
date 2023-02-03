@@ -296,7 +296,7 @@ document.addEventListener(
     const forms = document.querySelectorAll('form')
     forms.forEach(function (form, index) {
       // The form must have the "novalidate" attribute
-      // to apply this custom validation handling
+      //   to apply this custom validation handling
       if (form.getAttribute('novalidate') === null) return;
       if (form.getAttribute('novalidate') == 'debug') return;
 
@@ -306,8 +306,13 @@ document.addEventListener(
         if (['button', 'hidden', 'submit'].indexOf(input.getAttribute('type')) >= 0) return;
         input.addEventListener('input', (event) => {
           let field = new BsField(input.getAttribute('name'))
-          field.clearMessages()
-          if (!input.validity.valid) displayValidationErrors(input, field);
+          let name = input.getAttribute('name')
+          if (field.isValid()) {
+            field.clearMessages()
+          }
+          if (!input.validity.valid) {
+            displayValidationErrors(input, field)
+          }
         })
       })
 
@@ -320,7 +325,9 @@ document.addEventListener(
           if (['button', 'hidden', 'submit'].indexOf(input.getAttribute('type')) >= 0) return;
 
           let field = new BsField(input.getAttribute('name'))
-          field.clearMessages()
+          if (field.isValid()) {
+            field.clearMessages()
+          }
           if (!input.validity.valid) {
             hasErrors = true
             if (firstError === null) firstError = field
