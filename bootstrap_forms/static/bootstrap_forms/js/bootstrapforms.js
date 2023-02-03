@@ -10,6 +10,14 @@
  * @return {void}
  */
 function BsField(name, collapsable) {
+  // remove the "_#" suffix on name, if it exists
+  let parts = name.split('_')
+  let last  = parts[parts.length - 1]
+  let index = parseInt(last)
+  if (index !== NaN) {
+    name = parts.slice(0, parts.length - 1).join('_')
+  }
+
   this._selector  = 'form [name="' + name + '"]'
   this.inputs     = document.querySelectorAll(this._selector)
   if (this.inputs.length == 0) {
