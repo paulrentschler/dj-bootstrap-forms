@@ -77,7 +77,10 @@ BsField.prototype.addMessage = function (type, message) {
   var messages    = errorList.querySelectorAll('li')
   let msgElement  = document.createElement('li')
   let widgetClass = (type.trim().toUpperCase() == 'WARNING') ? 'is-warning' : 'is-invalid';
-  let msgElement  = document.createElement('li')
+  // remove warnings if adding errors
+  if (widgetClass == 'is-invalid' && that.widget.classList.contains('is-warning')) {
+    that.clearMessages()
+  }
   // determine if the message is already displayed
   messages.forEach(function(item, index) {
     if (item.innerHTML == message) exists = true;
