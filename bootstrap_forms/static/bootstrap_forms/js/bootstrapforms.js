@@ -2,6 +2,29 @@
  * Javascript for interacting with a Bootstrap styled form
  */
 
+
+/**
+ * Debouncer
+ *
+ * Delays execution of a function until the user stops triggering it.
+ *
+ * Explanations:
+ *   - https://www.freecodecamp.org/news/javascript-debounce-example/
+ *   - https://blog.bitsrc.io/what-is-debounce-in-javascript-a2b8e6157a5a
+ *   - https://chrisboakes.com/how-a-javascript-debounce-function-works/
+ *   - https://davidwalsh.name/javascript-debounce-function
+ */
+function bsf_debounce (callback, wait) {
+    let timeout
+    return (...args) => {
+        const context = this
+        clearTimeout(timeout)
+        timeout = setTimeout(() => callback.apply(context, args), wait)
+    }
+}
+
+
+
 /**
  * Class that represents a form field
  *
