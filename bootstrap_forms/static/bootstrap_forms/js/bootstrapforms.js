@@ -273,7 +273,7 @@ function displayValidationErrors (input, field) {
     } else {
       let label = type_
       if (type_ == 'datetime-local') label = 'date/time';
-      field.addMessage('ERROR', 'You must enter/select a ' + label + ' before ' + input.getAttribute('min') + '.')
+      field.addMessage('ERROR', 'You must enter/select a ' + label + ' before ' + input.getAttribute('max') + '.')
     }
 
   } else if (input.validity.stepMismatch) {
