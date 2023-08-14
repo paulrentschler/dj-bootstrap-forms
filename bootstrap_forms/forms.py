@@ -16,7 +16,7 @@ class Bootstrap5FormMixin():
         for item in self.visible_fields():
             _classes = item.field.widget.attrs.get('class', '').split(' ')
             _input_type = getattr(item.field.widget, 'input_type', '')
-            if _input_type == 'radio':
+            if _input_type == 'radio' or _input_type == 'checkbox':
                 _classes.append('form-check-input')
             else:
                 _classes.append('form-control')

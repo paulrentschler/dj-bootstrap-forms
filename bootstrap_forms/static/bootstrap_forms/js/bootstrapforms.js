@@ -182,7 +182,9 @@ BsField.prototype.makeCollapsable = function () {
 BsField.prototype.makeRequired = function () {
   this.widget.classList.add('required')
   this.inputs.forEach(function (element, index) {
-    element.setAttribute('required', '')
+    if (element.type != 'checkbox') {
+      element.setAttribute('required', '')
+    }
   })
 }
 
@@ -195,7 +197,9 @@ BsField.prototype.makeRequired = function () {
 BsField.prototype.removeRequired = function () {
   this.widget.classList.remove('required')
   this.inputs.forEach(function (element, index) {
-    element.removeAttribute('required')
+    if (element.type != 'checkbox') {
+      element.removeAttribute('required')
+    }
   })
 }
 
@@ -225,16 +229,27 @@ BsField.prototype.val = function () {
     return undefined
   } else if (this.inputs.length == 1) {
     if (this.inputs[0].type == 'checkbox') {
-      // TODO: return the .value if checked
+      // return the input's value if checked, otherwise null
+      if (this.inputs[0].checked) return this.inputs[0].value
+      return null
     } else {
+      // return the input's value
       return this.inputs[0].value
     }
   } else {
     if (this.inputs[0].type == 'radio') {
+      // return the selected value or null
       let item = document.querySelector(this._selector + ':checked')
       if (item === null) return null
       return item.value
+    } else if (this.inputs[0].type == 'checkbox') {
+      // return an array of selected values
+      let items = document.querySelectorAll(this._selector + ':checked')
+      let values = []
+      items.forEach(item => {values.push(item.value)})
+      return values
     } else {
+      // return a concatenated string of all values
       var val = ''
       this.inputs.forEach(function (element, index) {
         val += element.value + ' '
