@@ -26,5 +26,5 @@ class Bootstrap5FormMixin():
 
     def set_optional_fields(self):
         for item in self.visible_fields():
-            if item.name in self._optional_fields:
+            if item.name in getattr(self, '_optional_fields', []):
                 item.field.required = False
