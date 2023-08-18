@@ -7,7 +7,17 @@ class Message(Widget):
     Designed to work with a CharField, this widget displays the "value" of
     the field as the message text.
     """
+    message = ''
     template_name = 'bootstrap_forms/widgets/message.html'
+
+    def __init__(self, attrs=None, message=''):
+        self.message = message
+        super().__init__(attrs)
+
+    def get_context(self, name, value, attrs):
+        context = super().get_context(name, value, attrs)
+        context['widget']['message'] = self.message
+        return context
 
 
 class UsPhoneNumberInput(Input):
