@@ -1,0 +1,17 @@
+{% spaceless %}
+{% if use_tag %}
+  <{{ tag }} class="{% if field.widget_type == 'checkbox' %}form-check-label{% else %}form-label{% endif %}"
+             {% for attr_name, attr_value in attrs.items %}
+               {% if attr_name != 'class' %}
+                 {% if attr_value is not False %} {{ attr_name }}
+                   {% if attr_value is not True %}="{{ attr_value|stringformat:'s' }}"{% endif %}
+                 {% endif %}
+               {% endif %}
+             {% endfor %}
+             >
+    {{ label }}
+  </{{ tag }}>
+{% else %}
+  {{ label }}
+{% endif %}
+{% endspaceless %}

@@ -1,0 +1,60 @@
+{{ errors }}
+{% if errors and not fields %}
+  <div>{% for field in hidden_fields %}{{ field }}{% endfor %}</div>
+{% endif %}
+
+{% for field, errors in fields %}
+  <div class="mb-3 form-item widget-{{ field.widget_type }} {% with classes=field.css_classes %}{% if classes %} {{ classes }}{% endif %}{% endwith %}"
+       id="field_{{ field.name }}"
+       >
+    {% if field.widget_type == 'checkbox' %}
+
+      <div class="form-check">
+        {{ field }}
+        {% if field.label %}{{ field.label_tag }}{% endif %}
+
+        {% if field.help_text %}<div class="form-text">{{ field.help_text|safe }}</div>{% endif %}
+      </div>
+
+      {% if not errors %}
+        <ul class="errorlist" aria-live="polite"></ul>
+      {% else %}
+        {{ errors }}
+      {% endif %}
+
+    {% else %}
+
+      {% if field.use_fieldset %}
+        <fieldset>
+        {% if field.label %}{{ field.legend_tag }}{% endif %}
+      {% elif field.widget_type == 'message' %}
+        {% if field.label %}
+          <div class="form-label">{{ field.label }}</div>
+        {% endif %}
+      {% else %}
+        {% if field.label %}{{ field.label_tag }}{% endif %}
+      {% endif %}
+
+      {% if field.help_text %}<div class="form-text">{{ field.help_text|safe }}</div>{% endif %}
+
+      {% if not errors %}
+        <ul class="errorlist" aria-live="polite"></ul>
+      {% else %}
+        {{ errors }}
+      {% endif %}
+
+      {{ field }}
+
+      {% if field.use_fieldset %}</fieldset>{% endif %}
+
+    {% endif %}
+  </div>
+
+  {% if forloop.last %}
+    {% for field in hidden_fields %}{{ field }}{% endfor %}
+  {% endif %}
+{% endfor %}
+
+{% if not fields and not errors %}
+  {% for field in hidden_fields %}{{ field }}{% endfor %}
+{% endif %}

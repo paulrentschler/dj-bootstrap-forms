@@ -1,0 +1,130 @@
+/**
+ * Styles for Bootstrap 5 forms
+ */
+
+/* General form layout tweaks */
+
+legend {
+    font-size: 1rem;
+}
+
+div.form-control {
+    border: 0;
+    padding: 0;
+}
+
+.form-label {
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.form-text {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.form-label + .form-control,
+.form-text + .form-control {
+    margin-top: 0.5rem;
+}
+
+label.disabled {
+    opacity: 0.5;
+}
+
+.form-label.required:after,
+.required .form-label:after {
+    color: #a94442;
+    content: " (required)";
+    font-size: 80%;
+    margin-left: 0.5em;
+}
+
+.form-label.optional:after,
+.optional .form-label:after {
+    color: #31708f;
+    content: " (optional)";
+    font-size: 80%;
+    margin-left: 0.5em;
+}
+
+
+
+/* Change the cursor to a "no" when button disabled */
+.btn.disabled, .btn:disabled {
+    cursor: not-allowed;
+    pointer-events: auto;
+}
+
+
+
+/* Rules to fix the SplitDateTime widget */
+
+.splitdatetime {
+    margin-top: 0.5rem;
+}
+
+.splitdatetime .form-control {
+    display: inline-block;
+    margin-right: 0.3rem;
+    width: 10rem;
+}
+
+.splitdatetime .timezone-msg {
+    display: inline-block;
+}
+
+
+
+/* Rules to handle displaying errors */
+
+.form-item {
+    border: 1px solid transparent;
+    padding: 0.5rem;
+}
+
+.form-item.is-warning {
+    background-color: #fff3cd;
+    border-color: #664d03;
+}
+
+.form-item.is-invalid {
+    background-color: #fee;
+    border-color: red;
+}
+
+.form-item.is-warning .form-text,
+.form-item.is-invalid .form-text {
+    color: #666;
+}
+
+ul.errorlist {
+    display: none;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    margin-top: 0.3rem;
+}
+
+.is-warning ul.errorlist {
+    color: #664d03;
+    display: block;
+}
+
+.is-warning ul.errorlist:before {
+    color: #664d03;
+    content: "Please note!";
+    margin-left: -1.5rem;
+}
+
+.is-invalid ul.errorlist{
+    color: #a94442;
+    display: block;
+}
+
+.is-invalid ul.errorlist:before {
+    color: #a94442;
+    content: "Attention!";
+    margin-left: -1.5rem;
+}
+
+

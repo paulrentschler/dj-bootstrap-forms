@@ -1,0 +1,8 @@
+{% spaceless %}
+  <div class="splitdatetime">
+    {% for widget in widget.subwidgets %}
+      {% include widget.template_name %}
+    {% endfor %}
+    <div class="timezone-msg text-muted"></div>
+  </div>
+{% endspaceless %}
