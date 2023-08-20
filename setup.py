@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '22.12.1'
+version = '23.08.1'
 
 setup(
     name='DJ Bootstrap Forms',
