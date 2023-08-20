@@ -1,9 +1,9 @@
 from setuptools import setup, find_packages
 
-version = '23.08.1'
+version = '23.08.2'
 
 setup(
-    name='DJ Bootstrap Forms',
+    name='bootstrap_forms',
     version=version,
     description='Render Django forms for use with Bootstrap styles',
     classifiers=[
