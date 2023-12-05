@@ -35,7 +35,9 @@
         {% if field.label %}{{ field.label_tag }}{% endif %}
       {% endif %}
 
-      {% if field.help_text %}<div class="form-text">{{ field.help_text|safe }}</div>{% endif %}
+      {% if field.help_text %}<div class="form-text"
+                                   id="{{ field.id_for_label }}_helptext"
+                                   >{{ field.help_text|safe }}</div>{% endif %}
 
       {% if not errors %}
         <ul class="errorlist" aria-live="polite"></ul>
