@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '23.08.2'
+version = '23.12.1'
 
 setup(
     name='bootstrap_forms',
